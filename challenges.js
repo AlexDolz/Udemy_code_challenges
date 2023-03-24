@@ -956,40 +956,60 @@ Apply this to the team's average scores 😉
 // § Data 2: [1, 5, 3, 9, 6, 1]
 // Hints: Use many of the tools you learned about in this and the last section 😉
 
-const poll = {
-  question: 'What is your favourite programming language?',
-  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
 
-  // This generates [0, 0, 0, 0]. More in the next section!
-  answers: new Array(4).fill(0),
-  registerNewAnswer() {
-    // Get answer
-    const answer = +prompt(
-      `${this.question}\n${this.options.join('\n')}\n(Write option number)`
-    );
-    console.log(answer);
-    // Register answer
-    typeof answer === 'number' &&
-      answer < this.answers.length &&
-      this.answers[answer]++;
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     // Get answer
+//     const answer = +prompt(
+//       `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+//     );
+//     console.log(answer);
+//     // Register answer
+//     typeof answer === 'number' &&
+//       answer < this.answers.length &&
+//       this.answers[answer]++;
 
-    this.displayResults();
-    this.displayResults('string');
-  },
-  displayResults(type = 'array') {
-    if (type === 'array') {
-      console.log(this.answers);
-    } else if (type === 'string') {
-      console.log(`Poll results are ${this.answers.join(', ')}`);
-    }
-  },
-};
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
+//   displayResults(type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   },
+// };
 
-// poll.registerNewAnswer();
+// // poll.registerNewAnswer();
 
-document
-  .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+// document
+//   .querySelector('.poll')
+//   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+
+// **************** A closer look at functions  Challenge nr 2*******
+
+// This is more of a thinking challenge than a coding challenge 🤓
+// Your tasks:
+// 1. Take the IIFE below and at the end of the function, attach an event listener that
+// changes the color of the selected h1 element ('header') to blue, each time
+// the body element is clicked. Do not select the h1 element again!
+// 2. And now explain to yourself (or someone around you) why this worked! Take all
+// the time you need. Think about when exactly the callback function is executed,
+// and what that means for the variables involved in this example.
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
