@@ -1010,6 +1010,6 @@ Apply this to the team's average scores 😉
   header.style.color = 'red';
 
   document.querySelector('body').addEventListener('click', function () {
-    header.style.color = 'blue';
+    header.style.color = 'lightblue';
   });
 })();
