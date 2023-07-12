@@ -1075,17 +1075,36 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 // § Data 1: [5, 2, 4, 1, 15, 8, 3]
 // § Data 2: [16, 6, 10, 5, 6, 1, 4]
 
+// const calcAverageHumanAge = ages => {
+//   const humanYears = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+//   const adultDogs = humanYears.filter(age => age >= 18);
+//   // const averageHumanAge =
+//   // adultDogs.reduce((acc, cur, i) => acc + cur, 0) / adultDogs.length;
+//   // 2 3. (2+3) / 2 = 2.5 === 2/2 + 3/2 = 2.5
+//   // 2 solution
+//   const averageHumanAge = adultDogs.reduce(
+//     (acc, age, i, arr) => acc + age / arr.length,
+//     0
+//   );
+//   return averageHumanAge;
+// };
+
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+// ****************** Arrays methods challenge Nr 3 ******************
+
+// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+// as an arrow function, and using chaining!
+// Test data:
+// § Data 1: [5, 2, 4, 1, 15, 8, 3]
+// § Data 2: [16, 6, 10, 5, 6, 1, 4]
+
 const calcAverageHumanAge = ages => {
-  const humanYears = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
-  const adultDogs = humanYears.filter(age => age >= 18);
-  // const averageHumanAge =
-  // adultDogs.reduce((acc, cur, i) => acc + cur, 0) / adultDogs.length;
-  // 2 3. (2+3) / 2 = 2.5 === 2/2 + 3/2 = 2.5
-  // 2 solution
-  const averageHumanAge = adultDogs.reduce(
-    (acc, age, i, arr) => acc + age / arr.length,
-    0
-  );
+  const averageHumanAge = ages
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
   return averageHumanAge;
 };
 
