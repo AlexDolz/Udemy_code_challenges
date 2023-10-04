@@ -1037,24 +1037,24 @@ Apply this to the team's average scores 😉
 // § Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 // § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
-const checkDogs = (dogsJulia, dogsKate) => {
-  const dogsJuliaCorrected = [...dogsJulia];
-  dogsJuliaCorrected.splice(0, 1);
-  dogsJuliaCorrected.splice(-2);
+// const checkDogs = (dogsJulia, dogsKate) => {
+//   const dogsJuliaCorrected = [...dogsJulia];
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
 
-  const dogs = [...dogsJuliaCorrected, ...dogsKate];
+//   const dogs = [...dogsJuliaCorrected, ...dogsKate];
 
-  dogs.forEach((age, i) => {
-    if (age >= 3) {
-      console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
-    } else {
-      console.log(`Dog number ${i + 1} is still a puppy`);
-    }
-  });
-};
+//   dogs.forEach((age, i) => {
+//     if (age >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy`);
+//     }
+//   });
+// };
 
-// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+// // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 // ****************** Arrays methods coding challenge nr 2 ************
 
@@ -1151,59 +1151,101 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 // 1.10). Basically, the current portion should be between 90% and 110% of the
 // recommended portion.
 // Test data:
-const dogs = [
-  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-  { weight: 8, curFood: 200, owners: ['Matilda'] },
-  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] },
-];
+// const dogs = [
+//   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+//   { weight: 8, curFood: 200, owners: ['Matilda'] },
+//   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+//   { weight: 32, curFood: 340, owners: ['Michael'] },
+// ];
 
-// 1.
-dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
-console.log(dogs);
+// // 1.
+// dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+// console.log(dogs);
 
-// 2.
-const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
-console.log(dogSarah);
-console.log(
-  `Sarah's dog is eating too${
-    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
-  }`
-);
+// // 2.
+// const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+// console.log(dogSarah);
+// console.log(
+//   `Sarah's dog is eating too${
+//     dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
+//   }`
+// );
 
-// 3.
-const ownersEatTooMuch = dogs
-  .filter(dog => dog.curFood > dog.recFood)
-  .flatMap(dog => dog.owners);
-console.log(ownersEatTooMuch);
+// // 3.
+// const ownersEatTooMuch = dogs
+//   .filter(dog => dog.curFood > dog.recFood)
+//   .flatMap(dog => dog.owners);
+// console.log(ownersEatTooMuch);
 
-const ownersEatTooLittle = dogs
-  .filter(dog => dog.curFood < dog.recFood)
-  .flatMap(dog => dog.owners);
-console.log(ownersEatTooLittle);
+// const ownersEatTooLittle = dogs
+//   .filter(dog => dog.curFood < dog.recFood)
+//   .flatMap(dog => dog.owners);
+// console.log(ownersEatTooLittle);
 
-// 4.
-console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
-console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+// // 4.
+// console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+// console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
 
-// 5.
-console.log(dogs.some(dog => dog.curFood === dog.recFood));
+// // 5.
+// console.log(dogs.some(dog => dog.curFood === dog.recFood));
 
-// 6.
-console.log(
-  dogs.some(
-    dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
-  )
-);
+// // 6.
+// console.log(
+//   dogs.some(
+//     dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+//   )
+// );
 
-// 7.
-const checkEatingOk = dog =>
-  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+// // 7.
+// const checkEatingOk = dog =>
+//   dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
 
-console.log(dogs.filter(checkEatingOk));
+// console.log(dogs.filter(checkEatingOk));
 
-// 8.
+// // 8.
 
-const dogsSorted = [...dogs];
-dogsSorted.sort((a, b) => a.recFood - b.recFood);
-console.log(copyDogs);
+// const dogsSorted = [...dogs];
+// dogsSorted.sort((a, b) => a.recFood - b.recFood);
+// console.log(copyDogs);
+
+// *************** OOP Coding challenge Nr 1 *******************
+
+// 1. Use a constructor function to implement a 'Car'. A car has a 'make' and a
+// 'speed' property. The 'speed' property is the current speed of the car in
+// km/h
+// 2. Implement an 'accelerate' method that will increase the car's speed by 10,
+// and log the new speed to the console
+// 3. Implement a 'brake' method that will decrease the car's speed by 5, and log
+// the new speed to the console
+// 4. Create 2 'Car' objects and experiment with calling 'accelerate' and
+// 'brake' multiple times on each of them
+// Test data:
+// § Data car 1: 'BMW' going at 120 km/h
+// § Data car 2: 'Mercedes' going at 95 km/h
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
+
+bmw.accelerate();
+bmw.accelerate();
+bmw.brake();
+bmw.accelerate();
+
+mercedes.accelerate();
+mercedes.accelerate();
+mercedes.brake();
+mercedes.accelerate();
