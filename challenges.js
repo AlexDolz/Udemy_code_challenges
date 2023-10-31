@@ -1262,39 +1262,39 @@ mercedes.accelerate();
 // Test data:
 // § Data car 1: 'Ford' going at 120 km/h
 
-class CarCl {
-  constructor(make, speed) {
-    this.make = make;
-    this.speed = speed;
-  }
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+//   }
 
-  accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
+//   accelerate() {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
+//   }
 
-  brake() {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
+//   brake() {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
+//   }
 
-  get speedUs() {
-    return this.speed / 1.6;
-  }
+//   get speedUs() {
+//     return this.speed / 1.6;
+//   }
 
-  set speedUs(speed) {
-    this.speed = speed * 1.6;
-  }
-}
+//   set speedUs(speed) {
+//     this.speed = speed * 1.6;
+//   }
+// }
 
-const ford = new CarCl('Ford', 120);
-console.log(ford.speedUs);
-ford.accelerate();
-ford.accelerate();
-ford.accelerate();
-ford.brake();
-ford.speedUs = 50;
-console.log(ford);
+// const ford = new CarCl('Ford', 120);
+// console.log(ford.speedUs);
+// ford.accelerate();
+// ford.accelerate();
+// ford.accelerate();
+// ford.brake();
+// ford.speedUs = 50;
+// console.log(ford);
 
 // ******************* OOP Coding challenge Nr 3 ********************
 
@@ -1312,27 +1312,97 @@ console.log(ford);
 // Test data:
 // § Data car 1: 'Tesla' going at 120 km/h, with a charge of 23%
 
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
 
-EV.prototype = Object.create(Car.prototype);
+// EV.prototype = Object.create(Car.prototype);
 
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
-EV.prototype.accelerate = function () {
-  this.speed += 20;
-  this.charge--;
-  console.log(
-    `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
-  );
-};
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+//   );
+// };
 
-const tesla = new EV('Tesla', 120, 23);
+// const tesla = new EV('Tesla', 120, 23);
 
-tesla.chargeBattery(90);
-console.log(tesla);
-tesla.brake();
-tesla.accelerate();
+// tesla.chargeBattery(90);
+// console.log(tesla);
+// tesla.brake();
+// tesla.accelerate();
+
+// ****************** OOP Coding Challenge Nr 4 ********************
+
+// 1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl'
+// child class of the 'CarCl' class
+// 2. Make the 'charge' property private
+// 3. Implement the ability to chain the 'accelerate' and 'chargeBattery'
+// methods of this class, and also update the 'brake' method in the 'CarCl'
+// class. Then experiment with chaining!
+// Test data:
+// § Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
+  }
+
+  get speedUs() {
+    return this.speed / 1.6;
+  }
+
+  set speedUs(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+class EVCL extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  }
+}
+
+const rivian = new EVCL('Rivian', 120, 23);
+console.log(rivian);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
