@@ -1501,25 +1501,25 @@ Apply this to the team's average scores 😉
 //   });
 // };
 
-// const imgContainer = document.querySelector('.images');
+const imgContainer = document.querySelector('.images');
 
-// const createImage = function (imgPath) {
-//   return new Promise((resolve, reject) => {
-//     const img = document.createElement('img');
-//     img.src = imgPath;
+const createImage = function (imgPath) {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement('img');
+    img.src = imgPath;
 
-//     img.addEventListener('load', () => {
-//       imgContainer.append(img);
-//       resolve(img);
-//     });
+    img.addEventListener('load', () => {
+      imgContainer.append(img);
+      resolve(img);
+    });
 
-//     img.addEventListener('error', () => {
-//       reject(new Error('Image not found'));
-//     });
-//   });
-// };
+    img.addEventListener('error', () => {
+      reject(new Error('Image not found'));
+    });
+  });
+};
 
-// let currentImg;
+let currentImg;
 
 // createImage('img/img-1.jpg')
 //   .then(img => {
